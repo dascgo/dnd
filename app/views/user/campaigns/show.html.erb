@@ -1,0 +1,31 @@
+<h4>Campaign: <%= @campaign.name %></h4>
+
+<p>
+  <%= @campaign.description %>
+</p>
+
+
+<h4>
+  Characters
+</h4>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Race</td>
+    <td>Class</td>
+    <td>Level</td>
+  </tr>
+  <% @campaign.characters.each do |character| %>
+    <tr>
+      <td><%= character.name %></td>
+      <td><%= character.race %></td>
+      <td><%= character.type %></td>
+      <td><%= character.level %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'Back', user_campaigns_path %>
+</p>

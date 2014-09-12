@@ -1,0 +1,59 @@
+<h4>Character: <%= @character.name %></h4>
+
+<p>
+  <%= @character.description %>
+</p>
+<p>
+  Race: <%= @character.race %>
+</p>
+<p>
+  Class: <%= @character.type %>
+</p>
+<p>
+  Level: <%= @character.level %>
+</p>
+
+<h4>
+  Abilities
+</h4>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Value</td>
+    <td>Modifier</td>
+  </tr>
+  <% @character.abilities.each do |ability| %>
+    <tr>
+      <td><%= ability.name %></td>
+      <td><%= ability.value %></td>
+      <td><%= ability.modifier %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h4>
+  Items
+</h4>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>value</td>
+    <td>Description</td>
+    <td>Weight</td>
+  </tr>
+  <% @character.items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.value %></td>
+      <td><%= item.description %></td>
+      <td><%= item.weight %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<p>
+  <%= link_to 'Back', user_characters_path %>
+</p>

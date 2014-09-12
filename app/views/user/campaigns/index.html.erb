@@ -1,0 +1,26 @@
+<h4>Campaigns</h4>
+
+<p>
+  <%= link_to "New Campaign", new_user_campaign_path %>
+</p>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Characters</td>
+  </tr>
+  <% current_user.campaigns.each do |campaign| %>
+    <tr>
+      <td>
+        <%= link_to campaign.name, user_campaign_path(campaign) %>
+      </td>
+      <td>
+        <%= campaign.description %>
+      </td>
+      <td>
+        <%= campaign.characters.size %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,30 @@
+<h4>Characters</h4>
+
+<p>
+  <%= link_to "New Character", new_user_character_path %>
+</p>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Race</td>
+    <td>Class</td>
+    <td>Level</td>
+  </tr>
+  <% current_user.characters.each do |character| %>
+    <tr>
+      <td>
+        <%= link_to character.name, user_character_path(character) %>
+      </td>
+      <td>
+        <%= character.race %>
+      </td>
+      <td>
+        <%= character.type %>
+      </td>
+      <td>
+        <%= character.level %>
+      </td>
+    </tr>
+  <% end %>
+</table>
