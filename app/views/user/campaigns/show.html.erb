@@ -4,6 +4,12 @@
   <%= @campaign.description %>
 </p>
 
+<% if @campaign.owned_by(current_user) %>
+  <p>
+    http://localhost:3000/invite/<%= @campaign.invite_id %>
+  </p>
+<% end %>
+
 
 <h4>
   Characters
@@ -15,6 +21,7 @@
     <td>Race</td>
     <td>Class</td>
     <td>Level</td>
+    <td>Status</td>
   </tr>
   <% @campaign.characters.each do |character| %>
     <tr>
@@ -22,6 +29,28 @@
       <td><%= character.race %></td>
       <td><%= character.type %></td>
       <td><%= character.level %></td>
+      <td>
+        <%= character.campaign_status %>
+        <% if character.campaign_status == 0 %>
+
+          <%= form_tag(user_campaign_accept_index_path(@campaign), method: "post") do %>
+            <%= hidden_field_tag(:character_id, character.id)%>
+            <%= submit_tag("Accept") %>
+          <% end %>
+          <%= form_tag(user_campaign_reject_index_path(@campaign), method: "post") do %>
+            <%= hidden_field_tag(:character_id, character.id)%>
+            <%= submit_tag("Reject") %>
+          <% end %>
+
+        <% else %>
+
+          <%= form_tag(user_campaign_reject_index_path(@campaign), method: "post") do %>
+            <%= hidden_field_tag(:character_id, character.id)%>
+            <%= submit_tag("Reject") %>
+          <% end %>
+
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

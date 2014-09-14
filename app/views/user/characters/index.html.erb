@@ -10,6 +10,7 @@
     <td>Race</td>
     <td>Class</td>
     <td>Level</td>
+    <td>Campaign</td>
   </tr>
   <% current_user.characters.each do |character| %>
     <tr>
@@ -24,6 +25,13 @@
       </td>
       <td>
         <%= character.level %>
+      </td>
+      <td>
+        <% if character.campaign %>
+          <%= link_to character.campaign.name, user_campaign_path(character.campaign) %>
+        <% else %>
+          na
+        <% end %>
       </td>
     </tr>
   <% end %>

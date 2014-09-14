@@ -8,8 +8,16 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :characters
-    resources :campaigns
+    resources :campaigns do
+      scope module: 'campaigns' do
+        resources :accept, only: [:create]
+        resources :reject, only: [:create]
+      end
+
+    end
   end
+
+  resources :invite, :only => [:show, :create]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

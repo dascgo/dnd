@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912032855) do
+ActiveRecord::Schema.define(version: 20140914173725) do
 
   create_table "abilities", force: true do |t|
     t.integer  "character_id"
@@ -31,23 +31,26 @@ ActiveRecord::Schema.define(version: 20140912032855) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invite_id"
   end
 
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id"
 
   create_table "characters", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",                    null: false
+    t.string   "name",                        null: false
     t.text     "description"
     t.integer  "race"
     t.integer  "type"
-    t.integer  "weight",      default: 0
-    t.integer  "height",      default: 0
-    t.integer  "level",       default: 0
-    t.integer  "experience",  default: 0
+    t.integer  "weight",          default: 0
+    t.integer  "height",          default: 0
+    t.integer  "level",           default: 0
+    t.integer  "experience",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "campaign_id"
+    t.string   "invite_id"
+    t.integer  "campaign_status", default: 0
   end
 
   add_index "characters", ["campaign_id"], name: "index_characters_on_campaign_id"

@@ -1,0 +1,28 @@
+<p>
+  <%= @campaign.name %>
+</p>
+
+
+<% if current_user %>
+
+  <strong>Join Campaign</strong>
+
+  <% joinable_characters = current_user.characters.where(campaign_id: nil) %>
+  <% if joinable_characters.size > 0 %>
+
+    <%= form_tag("/invite", method: "post") do %>
+
+      <%= hidden_field_tag(:invite_id, params[:id])%>
+
+      <%= select_tag(:character_id, options_for_select(joinable_characters.collect {|x| [x.name, x.id] })) %>
+      <%= submit_tag("Join") %>
+
+    <% end %>
+
+  <% else %>
+
+    <p>No available characters</p>
+
+  <% end %>
+
+<% end %>

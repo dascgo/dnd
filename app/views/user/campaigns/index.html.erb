@@ -19,7 +19,7 @@
         <%= campaign.description %>
       </td>
       <td>
-        <%= campaign.characters.size %>
+        <%= campaign.characters.size %> (<%= campaign.characters.where(campaign_status: 1).size %> accepted)
       </td>
     </tr>
   <% end %>

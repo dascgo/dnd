@@ -48,3 +48,5 @@ group :development do
   gem 'quiet_assets'
 end
 
+gem 'simplecov', :require => false, :group => :test
+
